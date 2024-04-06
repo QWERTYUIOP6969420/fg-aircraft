@@ -2463,7 +2463,58 @@
                     <script>aircraft.refuel_probe_switch_cycle();</script>
                 </binding>
             </key>
-
+            <key n="74">
+                <name>J</name>
+                <desc>Jettison Fuel Tanks</desc>
+                <binding>
+                    <condition>
+                        <equals>
+                            <property>payload/weight[1]/selected</property>
+                            <value type="string">Droptank</value>
+                        </equals>
+                    </condition>
+                    <command>property-assign</command>
+                    <property>controls/armament/station[1]/jettison-all</property>
+                    <value type="bool">true</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>payload/weight[1]/selected</property>
+                    <value type="string">none</value>
+                </binding>
+                <binding>
+                    <condition>
+                        <equals>
+                            <property>payload/weight[5]/selected</property>
+                            <value type="string">Droptank</value>
+                        </equals>
+                    </condition>
+                    <command>property-assign</command>
+                    <property>controls/armament/station[5]/jettison-all</property>
+                    <value type="bool">true</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>payload/weight[5]/selected</property>
+                    <value type="string">none</value>
+                </binding>
+                <binding>
+                    <condition>
+                        <equals>
+                            <property>payload/weight[9]/selected</property>
+                            <value type="string">Droptank</value>
+                        </equals>
+                    </condition>
+                    <command>property-assign</command>
+                    <property>controls/armament/station[9]/jettison-all</property>
+                    <value type="bool">true</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>payload/weight[9]/selected</property>
+                    <value type="string">none</value>
+                </binding>
+            </key>
             <key n="109">
                 <name>m</name>
                 <desc>Cycle Weapon Mode Selector</desc>
