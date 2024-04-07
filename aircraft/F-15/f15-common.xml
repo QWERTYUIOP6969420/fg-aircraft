@@ -368,6 +368,9 @@
                 <name>u</name>
                 <desc>Cycle through the 3 refuelling probe switch positions</desc>
             </key>
+	    <key>
+		<name>J</name>
+		<desc>Jettison Fuel Tanks (bandaid fix until MPCD CBT JETT panel added)</desc>
             <key>
                 <name>m</name>
                 <desc>Cycle Stick Weapon Mode Selector</desc>
