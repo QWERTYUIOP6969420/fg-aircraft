@@ -115,7 +115,6 @@ var MPCD_Station =
                 mode = "";
                 na = "";
             }
-
             me.status.setText(mode);
             me.label.setText(na);
 
@@ -988,6 +987,10 @@ var MPCD_Device =
         me.p1_4.LBL_CBT2_g = me.PFDsvg.getElementById("LBL_CBT2_g");
         me.p1_4.LBL_CBT_g.setText("A/G");
         me.p1_4.LBL_CBT2_g.setText("---");
+
+## CBT JETT
+        me.p1_5 = me.PFD.addPage("Combat Jettison Page", "p1_5");
+
         var oo = me;
         var update_flares = func(o) {
             v = getprop("/ai/submodels/submodel[5]/count");
@@ -1103,7 +1106,55 @@ var MPCD_Device =
                         }
                     }
             );
-
+        ## Droptank or Empty pylon
+        setlistener("payload/weight[1]/selected", func(v)
+                    {
+                        if (v.getValue() == "Droptank") {
+                            me.p1_3.pylon_or_fuel_station_2 = me.p1_3.addMenuItem(10, "FUEL", me.p1_3);
+                            me.p1_4.pylon_or_fuel_station_2 = me.p1_4.addMenuItem(10, "FUEL", me.p1_4);
+                            me.p1_5.pylon_or_fuel_station_2 = me.p1_5.addMenuItem(10, "FUEL", me.p1_5);
+                            me.PFD.updateMenus();
+                        }
+                        elsif (v.getValue() == "none") {
+                            me.p1_3.pylon_or_fuel_station_2 = me.p1_3.addMenuItem(10, "PYLON", me.p1_3);
+                            me.p1_4.pylon_or_fuel_station_2 = me.p1_4.addMenuItem(10, "PYLON", me.p1_4);
+                            me.p1_5.pylon_or_fuel_station_2 = me.p1_5.addMenuItem(10, "PYLON", me.p1_5);
+                            me.PFD.updateMenus();
+                        }
+                    }
+            );
+        setlistener("payload/weight[5]/selected", func(v)
+                    {
+                        if (v.getValue() == "Droptank") {
+                            me.p1_3.pylon_or_fuel_station_5 = me.p1_3.addMenuItem(12, "FUEL", me.p1_3);
+                            me.p1_4.pylon_or_fuel_station_5 = me.p1_4.addMenuItem(12, "FUEL", me.p1_4);
+                            me.p1_5.pylon_or_fuel_station_5 = me.p1_5.addMenuItem(12, "FUEL", me.p1_5);
+                            me.PFD.updateMenus();
+                        }
+                        elsif (v.getValue() == "none") {
+                            me.p1_3.pylon_or_fuel_station_5 = me.p1_3.addMenuItem(12, "PYLON", me.p1_3);
+                            me.p1_4.pylon_or_fuel_station_5 = me.p1_4.addMenuItem(12, "PYLON", me.p1_4);
+                            me.p1_5.pylon_or_fuel_station_5 = me.p1_5.addMenuItem(12, "PYLON", me.p1_5);
+                            me.PFD.updateMenus();
+                        }
+                    }
+            );
+        setlistener("payload/weight[9]/selected", func(v)
+                    {
+                        if (v.getValue() == "Droptank") {
+                            me.p1_3.pylon_or_fuel_station_8 = me.p1_3.addMenuItem(14, "FUEL", me.p1_3);
+                            me.p1_4.pylon_or_fuel_station_8 = me.p1_4.addMenuItem(14, "FUEL", me.p1_4);
+                            me.p1_5.pylon_or_fuel_station_8 = me.p1_5.addMenuItem(14, "FUEL", me.p1_5);
+                            me.PFD.updateMenus();
+                        }
+                        elsif (v.getValue() == "none") {
+                            me.p1_3.pylon_or_fuel_station_8 = me.p1_3.addMenuItem(14, "PYLON", me.p1_3);
+                            me.p1_4.pylon_or_fuel_station_8 = me.p1_4.addMenuItem(14, "PYLON", me.p1_4);
+                            me.p1_5.pylon_or_fuel_station_8 = me.p1_5.addMenuItem(14, "PYLON", me.p1_5);
+                            me.PFD.updateMenus();
+                        }
+                    }
+            );
         me.mpcd_button_pushed = 0;
         me.setupMenus();
         me.PFD.selectPage(me.p1_1);
@@ -1141,7 +1192,7 @@ var MPCD_Device =
 
         me.p1_2.addMenuItem(1, "A/A", me.p1_3);
         me.p1_2.addMenuItem(2, "A/G", me.p1_4);
-        me.p1_2.addMenuItem(3, "CBT JETT", me.p1_3);
+        me.p1_2.addMenuItem(3, "CBT JETT", me.p1_5);
         me.p1_2.addMenuItem(4, "WPN LOAD", me.p1_3);
         me.p1_2.addMenuItem(9, "M", me.p1_1);
 
@@ -1150,9 +1201,6 @@ var MPCD_Device =
         me.p1_3.addMenuItem(4, "2/2", me.p1_3);
         me.p1_3.addMenuItem(8, "TM\nPWR", me.p1_3);
         me.p1_3.addMenuItem(9, "M", me.p1_1);
-        me.p1_3.addMenuItem(10, "PYLON", me.p1_3);
-        me.p1_3.addMenuItem(12, "FUEL", me.p1_3);
-        me.p1_3.addMenuItem(14, "PYLON", me.p1_3);
         me.p1_3.addMenuItem(15, "MODE S", me.p1_3);
 
         me.p1_4.addMenuItem(2, "SIT", me.p_HSD);
@@ -1165,6 +1213,13 @@ var MPCD_Device =
 #        me.p1_4.addMenuItem(14, "PYLON", me.p1_4);
 #        me.p1_4.addMenuItem(15, "MODE S", me.p1_3);
 
+        me.p1_5.addMenuItem(9, "M", me.p1_1);
+        me.p1_5.addMenuItem(1, "RACK", me.p1_3);
+        me.p1_5.addMenuItem(2, "STORE", me.p1_3);
+        me.p1_5.addMenuItem(3, "PYLON", me.p1_3);
+        me.p1_5.addMenuItem(15, "1", me.p1_3);
+        me.p1_5.addMenuItem(16, "2", me.p1_3);
+        me.p1_5.addMenuItem(19, "ENTER", me.p1_3);
 
     },
 
